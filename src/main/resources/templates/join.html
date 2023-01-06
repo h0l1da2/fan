@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <form th:action th:object="${member}" method="post">
+    <table>
+        <tr>
+            <th>아이디</th>
+            <th><input type="text" th:field="*{memberId}" class="form-control" placeholder="아이디"></th>
+        </tr>
+        <tr>
+            <th>비밀번호</th>
+            <th><input type="text" th:field="*{password}" class="form-control" placeholder="비밀번호"></th>
+        </tr>
+        <tr>
+            <th>이름</th>
+            <th><input type="text" th:field="*{name}" class="form-control" placeholder="비밀번호"></th>
+        </tr>
+        <tr>
+            <th>닉네임</th>
+            <th><input type="text" th:field="*{nickname}" class="form-control" placeholder="비밀번호"></th>
+        </tr>
+        <tr>
+            <th>이메일</th>
+            <th><input type="text" th:field="*{email}" class="form-control" placeholder="비밀번호"></th>
+        </tr>
+        <tr>
+            <th>주소</th>
+            <th><input type="text" th:field="*{address}" class="form-control" placeholder="비밀번호"></th>
+        </tr>
+    </table>
+    </form>
+</div>
+</body>
+</html>

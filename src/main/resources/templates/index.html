@@ -1,0 +1,24 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>HOLIDAY FAN PAGE</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div class="loginWrapper">
+        <div class="loginIdInputWrapper">
+        <span class="loginTitleInput">아이디</span>
+        <input type="text"></div>
+        <div class="loginPwdInputWrapper">
+        <span class="loginTitleInput">비밀번호</span>
+        <input type="password"></div>
+        <div class="loginButtonWrapper">
+            <button th:onsubmit="">로그인</button></div>
+        <div class="loginButtonWrapper">
+            <button th:onclick="|location.href='@{/member/join}'|">회원가입</button>
+        </div>
+    </div>
+</body>
+</html>

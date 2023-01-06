@@ -1,0 +1,54 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>HOLIDAY FAN PAGE</title>
+    <style>
+        .container {
+            flex-flow: row wrap;
+            margin: 10px;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #loginId {
+            margin: 8px;
+        }
+        .loginInputWrapper {
+            margin: 5px;
+        }
+        .loginBtnWrapper {
+            margin: 15px;
+        }
+        .login-login-btn {
+            margin: 10px;
+            width: 80px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+<div id="container" class="container">
+    <div class="title-text-center">
+        <a href="/">
+            홈으로
+        </a>
+    </div>
+    <div class="title-text-center">
+        <h2>로그인</h2>
+    </div>
+    <div class="loginWrapper">
+        <div class="loginInputWrapper">
+            <span id="loginId">아이디</span>
+            <input type="text">
+            <div class="loginInputWrapper">
+                <span>비밀번호</span>
+                <input type="password">
+            </div>
+        </div>
+        <div class="loginBtnWrapper">
+            <button type="loginBtn" class="login-login-btn">로그인</button>
+            <button type="joinBtn" class="login-login-btn">회원가입</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
