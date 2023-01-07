@@ -5,10 +5,12 @@ import holiday.fan.repository.jpa.MemberJpaRepository;
 import holiday.fan.service.MemberServiceImpl;
 import holiday.fan.service.interfaces.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -35,12 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/", "/member/**", "/market/**", "/fanboard/**", "/consult/**", "/order/**").permitAll()
-                .antMatchers("/admin/**").access("hasRoleName('ADMIN') and hasAuthority('HOLIDAY') or hasAuthority('SLAVE')")
-                .anyRequest().authenticated();
+    protected void configure(HttpSecurity http) throws Exception { //스프링 시큐리티 설정
 
         http.csrf() //사용자의 의도치않은 위조요청을 하는 공격
             .disable() //근데 restApi는 서버에 인증정보 저장 안해서 안써도되어요
@@ -62,6 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests() //요청 권한을 지정할건데요
                 .antMatchers(HttpMethod.POST, "/login").permitAll() // POST요청으로 오는 /login 은 모두 접근 가능해요
+                //다른 요청들도 추가해야함.... :) 팬레터게시판이나 거래게시판
                 .anyRequest().authenticated() //다른 요청들은 인증해야만 가능해요
 
                 .and()
@@ -71,6 +69,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .accessDeniedHandler() //인가 실패하면 이렇게 처리해주세요
         ;
 
+    }
+
+    @Override //HttpSecurity 설정 덮어씀
+    public void configure(WebSecurity web) throws Exception { //시큐리티 정적 파일(앞단)설정
+        web
+                .ignoring() //얘네는 시큐리티 필터 안 거칠 거예요
+                //정적 리소스는 필터 안 거칠래요
+                //StaticResourceLocation 의 enum 들 (css, js....)
+                .requestMatchers(PathRequest.toStaticResources().atCommonLocations());
     }
 
     //fdfdeieirj로그인 석세시스핸들러
